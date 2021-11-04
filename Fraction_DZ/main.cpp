@@ -172,6 +172,7 @@ ostream& operator<<(ostream& os, const Fraction& obj)
 
 //#define CONSTRUCTORS_CHECK
 //#define OSTREAM_CHECK
+//#define OPERATORS_MULTI_DIV
 
 void main()
 {
@@ -197,6 +198,7 @@ void main()
 	cout << A << endl;
 #endif // OSTREAM_CHECK
 
+#ifdef OPERATORS_MULTI_DIV
 	int a = 2;
 	int b = 3;
 	int c = a * b;
@@ -208,7 +210,9 @@ void main()
 	Fraction C = A * B;
 	cout << C << endl;
 	cout << A / B << endl;
+#endif // OPERATORS_MULTI_DIV
 
-	A *= B;
-	cout << A << endl;
+
+	//A *= B;
+	//cout << A << endl;
 }
