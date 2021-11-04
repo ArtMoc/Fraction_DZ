@@ -1,11 +1,11 @@
-#include <iostream>
+п»ї#include <iostream>
 using namespace std;
 
 class Fraction
 {
-	int integer; //целая часть
-	int numerator; //числитель 
-	int denominator; //знаменатель
+	int integer; //С†РµР»Р°СЏ С‡Р°СЃС‚СЊ
+	int numerator; //С‡РёСЃР»РёС‚РµР»СЊ 
+	int denominator; //Р·РЅР°РјРµРЅР°С‚РµР»СЊ
 public:
 	int get_integer()const
 	{
@@ -43,7 +43,7 @@ public:
 	}
 	Fraction(int integer)
 	{
-		//Single Argument Constructor - Конструктор с одним параметром
+		//Single Argument Constructor - РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РѕРґРЅРёРј РїР°СЂР°РјРµС‚СЂРѕРј
 		this->integer = integer;
 		this->numerator = 0;
 		this->denominator = 1;
@@ -89,14 +89,14 @@ public:
 	//                      Methods:
 	Fraction& to_proper()
 	{
-		//переводит дробь в правильную - выделяет целую часть
+		//РїРµСЂРµРІРѕРґРёС‚ РґСЂРѕР±СЊ РІ РїСЂР°РІРёР»СЊРЅСѓСЋ - РІС‹РґРµР»СЏРµС‚ С†РµР»СѓСЋ С‡Р°СЃС‚СЊ
 		integer += numerator / denominator;
 		numerator %= denominator;
 		return *this;
 	}
 	Fraction& to_improper()
 	{
-		//переводит дробь в неправильную - интегрирует целую часть в числитель
+		//РїРµСЂРµРІРѕРґРёС‚ РґСЂРѕР±СЊ РІ РЅРµРїСЂР°РІРёР»СЊРЅСѓСЋ - РёРЅС‚РµРіСЂРёСЂСѓРµС‚ С†РµР»СѓСЋ С‡Р°СЃС‚СЊ РІ С‡РёСЃР»РёС‚РµР»СЊ
 		numerator += integer * denominator;
 		integer = 0;
 		return *this;
@@ -111,13 +111,13 @@ public:
 	}
 	void reduce()
 	{
-		//сокращает дробь
+		//СЃРѕРєСЂР°С‰Р°РµС‚ РґСЂРѕР±СЊ
 
 	}
 
 	void print()
 	{
-		if (integer)cout << integer; //если есть целая часть, выводим ее на экран
+		if (integer)cout << integer; //РµСЃР»Рё РµСЃС‚СЊ С†РµР»Р°СЏ С‡Р°СЃС‚СЊ, РІС‹РІРѕРґРёРј РµРµ РЅР° СЌРєСЂР°РЅ
 		if (numerator)
 		{
 			if (integer)cout << "(";
@@ -126,7 +126,7 @@ public:
 		}
 		else if (integer == 0)cout << 0;
 		cout << endl;
-	}
+	} 
 };
 
 Fraction operator*(Fraction left, Fraction right)
@@ -143,9 +143,9 @@ Fraction operator*(Fraction left, Fraction right)
 	//result.to_proper();
 	//return result;
 
-	//Явно вызываем конструктор прямо в return-е.
-	//Этот конструктор создает временный безымяный объект,
-	//который return сразу же возвращает на место вызова:
+	//РЇРІРЅРѕ РІС‹Р·С‹РІР°РµРј РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїСЂСЏРјРѕ РІ return-Рµ.
+	//Р­С‚РѕС‚ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕР·РґР°РµС‚ РІСЂРµРјРµРЅРЅС‹Р№ Р±РµР·С‹РјСЏРЅС‹Р№ РѕР±СЉРµРєС‚,
+	//РєРѕС‚РѕСЂС‹Р№ return СЃСЂР°Р·Сѓ Р¶Рµ РІРѕР·РІСЂР°С‰Р°РµС‚ РЅР° РјРµСЃС‚Рѕ РІС‹Р·РѕРІР°:
 	return Fraction
 	(
 		left.get_numerator() * right.get_numerator(),
@@ -159,7 +159,7 @@ Fraction operator/(Fraction left,Fraction right)
 
 ostream& operator<<(ostream& os, const Fraction& obj)
 {
-	if (obj.get_integer())os << obj.get_integer(); //если есть целая часть, выводим ее на экран
+	if (obj.get_integer())os << obj.get_integer(); //РµСЃР»Рё РµСЃС‚СЊ С†РµР»Р°СЏ С‡Р°СЃС‚СЊ, РІС‹РІРѕРґРёРј РµРµ РЅР° СЌРєСЂР°РЅ
 	if (obj.get_numerator())
 	{
 		if (obj.get_integer())os << "(";
