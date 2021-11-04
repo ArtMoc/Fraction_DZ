@@ -87,17 +87,27 @@ public:
 
 
 	//                      Methods:
-	void to_proper()
+	Fraction& to_proper()
 	{
 		//переводит дробь в правильную - выдел€ет целую часть
 		integer += numerator / denominator;
 		numerator %= denominator;
+		return *this;
 	}
-	void to_improper()
+	Fraction& to_improper()
 	{
 		//переводит дробь в неправильную - интегрирует целую часть в числитель
 		numerator += integer * denominator;
 		integer = 0;
+		return *this;
+	}
+	Fraction& inverted()
+	{
+		to_improper();
+		int buffer = numerator;
+		numerator = denominator;
+		denominator = buffer;
+		return *this;
 	}
 	void reduce()
 	{
@@ -119,7 +129,49 @@ public:
 	}
 };
 
+Fraction operator*(Fraction left, Fraction right)
+{
+	left.to_improper();
+	right.to_improper();
+	/*Fraction result
+	(
+		left.get_numerator() * right.get_numerator(),
+		left.get_denominator() * right.get_denominator()
+	);*/
+	//result.set_numerator(left.get_numerator() * right.get_numerator());
+	//result.set_denominator(left.get_denominator() * right.get_denominator());
+	//result.to_proper();
+	//return result;
+
+	//явно вызываем конструктор пр€мо в return-е.
+	//Ётот конструктор создает временный безым€ный объект,
+	//который return сразу же возвращает на место вызова:
+	return Fraction
+	(
+		left.get_numerator() * right.get_numerator(),
+		left.get_denominator() * right.get_denominator()
+	).to_proper();
+}
+Fraction operator/(Fraction left,Fraction right)
+{
+	return left * right.inverted();
+}
+
+ostream& operator<<(ostream& os, const Fraction& obj)
+{
+	if (obj.get_integer())os << obj.get_integer(); //если есть цела€ часть, выводим ее на экран
+	if (obj.get_numerator())
+	{
+		if (obj.get_integer())os << "(";
+		os << obj.get_numerator() << "/" << obj.get_denominator();
+		if (obj.get_integer())os << ")";
+	}
+	else if (obj.get_integer() == 0)os << 0;
+	return os;
+}
+
 //#define CONSTRUCTORS_CHECK
+//#define OSTREAM_CHECK
 
 void main()
 {
@@ -135,9 +187,28 @@ void main()
 	D.print();
 #endif // CONSTRUCTORS_CHECK
 
+#ifdef OSTREAM_CHECK
 	Fraction A(14, 4);
 	A.to_proper();
-	A.print();
+	//A.print();
+	cout << A << endl;
 	A.to_improper();
-	A.print();
+	//A.print();
+	cout << A << endl;
+#endif // OSTREAM_CHECK
+
+	int a = 2;
+	int b = 3;
+	int c = a * b;
+
+	Fraction A(1, 2, 3);
+	Fraction B(2, 4, 5);
+	cout << A << endl;
+	cout << B << endl;
+	Fraction C = A * B;
+	cout << C << endl;
+	cout << A / B << endl;
+
+	A *= B;
+	cout << A << endl;
 }
