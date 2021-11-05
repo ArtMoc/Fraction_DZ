@@ -1,4 +1,6 @@
-﻿#include <iostream>
+﻿#pragma warning (disable:4326)
+
+#include <iostream>
 using namespace std;
 
 class Fraction;
@@ -45,7 +47,7 @@ public:
 		this->denominator = 1;
 		cout << "Default_Constructor:\t" << this << endl;
 	}
-	Fraction(int integer)
+	explicit Fraction(int integer)
 	{
 		//Single Argument Constructor - Конструктор с одним параметром
 		this->integer = integer;
@@ -302,7 +304,9 @@ istream& operator>>(istream& is, Fraction& obj)
 //#define OSTREAM_CHECK
 //#define ARITHMETICAL_OPERATORS_CHECK
 //#define COPMARISON_OPERATORS
-
+//#define ISTREAM_OPERATOR_CHECK
+//#define TYPE_CONVERSION_BASICS
+//#define CONVERSION_FROM_OTHER_TO_CLASS
 
 void main()
 {
@@ -364,8 +368,39 @@ void main()
 	cout << (A <= B) << endl;
 #endif // COPMARISON_OPERATORS
 
+#ifdef ISTREAM_OPERATOR_CHECK
 	Fraction A;
 	cout << "Введите дробь: ";
 	cin >> A;
 	cout << A << endl;
+#endif // ISTREAM_OPERATOR_CHECK
+
+
+	/*
+	-------------------------------------------------------------------------
+	_________________________________________________________________________
+	*/
+	//                         ПРЕОБРАЗОВАНИЕ ТИПОВ
+#ifdef TYPE_CONVERSION_BASICS
+	int a = 2;    //No conversions
+	double b = 3; //Conversion from int to double (from less to more)
+	int c = b;    //Conversion from double to int (from more to less without data loss)
+	int d = 4.5;  //Conversion from to int (from more to less with data loss) 
+	cout << d << endl;
+#endif // TYPE_CONVERSION_BASICS
+
+#ifdef CONVERSION_FROM_OTHER_TO_CLASS
+	double a = 2;   //From int to double (from less to more)
+	Fraction A = (Fraction)5; //From int to Fraction (from less to more)
+	cout << A << endl;
+	cout << "\n---------------------------------\n";
+	Fraction B; //Default constructor
+	cout << "\n---------------------------------\n";
+	B = Fraction(8);
+	cout << "\n---------------------------------\n";
+	cout << B << endl;
+	Fraction C(12); //explicit конструктор можно вызвать так, и нельзя вызвать так: Fractions C = 12;
+	cout << C << endl;
+#endif // CONVERSION_FROM_OTHER_TO_CLASS
+
 }
