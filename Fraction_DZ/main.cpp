@@ -120,6 +120,16 @@ public:
 		return old;
 	}
 
+	//                                          TYPE-CAST OPERATORS
+
+	explicit operator int()const
+	{
+		return integer;
+	}
+	operator double()
+	{
+		return integer + (double)numerator / denominator;
+	}
 	
 
 	//                                          METHODS:
@@ -402,5 +412,25 @@ void main()
 	Fraction C(12); //explicit конструктор можно вызвать так, и нельзя вызвать так: Fractions C = 12;
 	cout << C << endl;
 #endif // CONVERSION_FROM_OTHER_TO_CLASS
+
+
+	/*
+	
+	-----------------------------------------------
+	operator type()
+	{
+	//conversion is here;
+	.......
+	return ...;
+	}
+	-----------------------------------------------
+	*/
+
+	Fraction A(2, 3, 4);
+	int a = A;
+	cout << A << endl;
+	cout << a << endl;
+	double b = A;
+	cout << b << endl;
 
 }
