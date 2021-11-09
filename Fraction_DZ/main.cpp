@@ -55,6 +55,18 @@ public:
 		this->denominator = 1;
 		cout << "Single_Argument_Constructor:" << this << endl;
 	}
+	Fraction(double decimal)
+	{
+		decimal += 1e-11;
+		integer = decimal;  //Сохраняем целую часть десятичной дроби
+		decimal -= integer; //убираем целую часть из десятичной дроби
+		denominator = 1e+9; //1 * 10^9
+		numerator = decimal * denominator; //умножаем дробную часть десятичной дроби на 1млрд.,
+		                                   //таким образом вся дробная часть переходить в 
+		                                   //целую часть. И сохраняем ее в числителе.
+		reduce();
+		cout << "double_constructor:\t" << this << endl;
+	}
 	Fraction(int numerator, int denominator)
 	{
 		this->integer = 0;
@@ -158,6 +170,11 @@ public:
 	Fraction& reduce()
 	{
 		//сокращает дробь
+		if (numerator == 0)
+		{
+			denominator = 1;
+			return *this;
+		}
 		int more; //Большее значение
 		int less; //Меньшее значение
 		int rest; //Остаток от деления
@@ -317,6 +334,7 @@ istream& operator>>(istream& is, Fraction& obj)
 //#define ISTREAM_OPERATOR_CHECK
 //#define TYPE_CONVERSION_BASICS
 //#define CONVERSION_FROM_OTHER_TO_CLASS
+//#define CONVERSION_FROM_TO_OTHER
 
 void main()
 {
@@ -414,17 +432,18 @@ void main()
 #endif // CONVERSION_FROM_OTHER_TO_CLASS
 
 
+#ifdef CONVERSION_FROM_TO_OTHER
 	/*
-	
-	-----------------------------------------------
-	operator type()
-	{
-	//conversion is here;
-	.......
-	return ...;
-	}
-	-----------------------------------------------
-	*/
+Type-cast operator
+-----------------------------------------------
+operator type()
+{
+//conversion is here;
+.......
+return ...;
+}
+-----------------------------------------------
+*/
 
 	Fraction A(2, 3, 4);
 	int a = A;
@@ -432,5 +451,12 @@ void main()
 	cout << a << endl;
 	double b = A;
 	cout << b << endl;
+#endif // CONVERSION_FROM_TO_OTHER
+
+	Fraction A = 2.76;
+	cout << A << endl;
+	Fraction B(2, 76, 100);
+	cout << B << endl;
+	cout << (A == B) << endl;
 
 }
