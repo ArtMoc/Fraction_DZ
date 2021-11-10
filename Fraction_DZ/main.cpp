@@ -458,5 +458,4 @@ return ...;
 	Fraction B(2, 76, 100);
 	cout << B << endl;
 	cout << (A == B) << endl;
-
 }
