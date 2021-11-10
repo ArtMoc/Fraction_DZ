@@ -47,7 +47,6 @@ public:
 		this->integer = 0;
 		this->numerator = 0;
 		this->denominator = 1;
-		cout << "Default_Constructor:\t" << this << endl;
 	}
 	explicit Fraction(int integer)
 	{
@@ -106,6 +105,7 @@ public:
 	{
 		return *this = *this / other;
 	}
+	
 
 	//                                        INCREMENT/DECREMENT:
 	Fraction& operator++() //Prefix increment
@@ -325,7 +325,7 @@ istream& operator>>(istream& is, Fraction& obj)
 
 //#define CONSTRUCTORS_CHECK
 //#define OSTREAM_CHECK
-#define ARITHMETICAL_OPERATORS_CHECK
+//#define ARITHMETICAL_OPERATORS_CHECK
 //#define COPMARISON_OPERATORS
 //#define ISTREAM_OPERATOR_CHECK
 //#define TYPE_CONVERSION_BASICS
@@ -365,8 +365,6 @@ void main()
 	cout << "OPERATOR '-': " << A - B << endl;
 	cout << "OPERATOR '*=': " << (A *= B) << endl;
 	cout << "OPERATOR '/=': " << (A /= B) << endl;
-	cout << "OPERATOR '+=': " << (A += B) << endl;
-	cout << "OPERATOR '-=': " << (A -= B) << endl;
 	cout << "PREFIX INCREMENT: " << ++A << endl;
 	cout << "PREFIX DECREMENT: " << --A << endl;
 	cout << "POSTFIX INCREMENT: " << A++ << endl;
