@@ -439,9 +439,12 @@ return ...;
 	cout << b << endl;
 #endif // CONVERSION_FROM_TO_OTHER
 
-	/*Fraction A = 2.76;
+	Fraction A = 2.76;
 	cout << A << endl;
 	Fraction B(2, 76, 100);
 	cout << B << endl;
-	cout << (A == B) << endl;*/
+	cout << (A == B) << endl;
+
+	Fraction C(1, 3);
+	cout << C*3 << endl;
 }
