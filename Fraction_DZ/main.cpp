@@ -138,7 +138,7 @@ public:
 	{
 		return integer;
 	}
-	operator double()
+	explicit operator double()
 	{
 		return integer + (double)numerator / denominator;
 	}
@@ -329,7 +329,7 @@ istream& operator>>(istream& is, Fraction& obj)
 
 //#define CONSTRUCTORS_CHECK
 //#define OSTREAM_CHECK
-#define ARITHMETICAL_OPERATORS_CHECK
+//#define ARITHMETICAL_OPERATORS_CHECK
 //#define COPMARISON_OPERATORS
 //#define ISTREAM_OPERATOR_CHECK
 //#define TYPE_CONVERSION_BASICS
@@ -453,9 +453,12 @@ return ...;
 	cout << b << endl;
 #endif // CONVERSION_FROM_TO_OTHER
 
-	/*Fraction A = 2.76;
+	Fraction A = 2.76;
 	cout << A << endl;
 	Fraction B(2, 76, 100);
 	cout << B << endl;
-	cout << (A == B) << endl;*/
+	cout << (A == B) << endl;
+
+	Fraction C(1, 3);
+	cout << C * 3 << endl;
 }
