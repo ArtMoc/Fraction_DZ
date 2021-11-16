@@ -139,7 +139,7 @@ public:
 	{
 		return integer;
 	}
-	operator double()
+	explicit operator double()
 	{
 		return integer + (double)numerator / denominator;
 	}
